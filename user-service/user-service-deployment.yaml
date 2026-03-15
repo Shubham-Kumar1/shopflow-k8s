@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: user-service
+  namespace: dev
 spec:
   replicas: 1
   selector:
@@ -14,7 +15,14 @@ spec:
     spec:
       containers:
       - name: user-service
-        image: asia-south1-docker.pkg.dev/devproject-489317/user-service/user-service:latest
+        image: asia-south1-docker.pkg.dev/devproject-489317/user-service/user-service:commit-941c
+        resources:
+          requests:
+            cpu: 50m
+            memory: 128Mi
+          limits:
+            cpu: 50m
+            memory: 128Mi
         ports:
         - containerPort: 4001
         envFrom:
@@ -31,3 +39,7 @@ spec:
             secretKeyRef:
               name: postgres-secret
               key: password
+        - name: DATABASE_URL
+          value: postgres://$(POSTGRES_USERNAME):$(POSTGRES_PASSWORD)@postgres:5432/userdb
+        - name: REDIS_URL
+          value: redis://redis:6379
