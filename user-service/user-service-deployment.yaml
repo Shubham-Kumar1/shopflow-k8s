@@ -19,7 +19,7 @@ spec:
         - containerPort: 4001
         envFrom:
         - configMapRef:
-            name: user-service-configmap
+            name: user-service-env
         env:
         - name: POSTGRES_USERNAME
           valueFrom:
