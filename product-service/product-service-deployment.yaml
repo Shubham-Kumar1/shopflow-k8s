@@ -39,7 +39,5 @@ spec:
             secretKeyRef:
               name: mongo-secret
               key: password
-        - name: MONGO_URI
-          value: mongodb://$(MONGO_USERNAME):$(MONGO_PASSWORD)@mongo:27017/productdb
         - name: REDIS_URL
           value: redis://redis:6379
