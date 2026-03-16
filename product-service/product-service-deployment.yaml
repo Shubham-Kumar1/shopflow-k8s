@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-service
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: product-service
+  template:
+    metadata:
+      labels:
+        app: product-service
+    spec:
+      containers:
+      - name: product-service
+        image: asia-south1-docker.pkg.dev/devproject-489317/product-service/product-service:commit-941c
+        resources:
+          requests:
+            cpu: 50m
+            memory: 128Mi
+          limits:
+            cpu: 50m
+            memory: 128Mi
+        ports:
+        - containerPort: 4002
+        envFrom:
+        - configMapRef:
+            name: product-service-env
+        env:
+        - name: MONGO_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret
+              key: username
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret
+              key: password
+        - name: MONGO_URI
+          value: mongodb://$(MONGO_USERNAME):$(MONGO_PASSWORD)@mongo:27017/productdb
+        - name: REDIS_URL
+          value: redis://redis:6379
