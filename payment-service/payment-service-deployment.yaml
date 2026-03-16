@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-service
+  name: payment-service
   namespace: dev
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user-service
+      app: payment-service
   template:
     metadata:
       labels:
-        app: user-service
+        app: payment-service
     spec:
       containers:
-      - name: user-service
-        image: asia-south1-docker.pkg.dev/devproject-489317/user-service/user-service:commit-941c
+      - name: payment-service
+        image: asia-south1-docker.pkg.dev/devproject-489317/payment-service/payment-service:commit-941c
         resources:
           requests:
             cpu: 50m
             memory: 128Mi
           limits:
-            cpu: 50m
-            memory: 128Mi
+            cpu: 100m
+            memory: 256Mi
         ports:
-        - containerPort: 4001
-        env: []
+        - containerPort: 4004
+

@@ -1,12 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: redis
+  name: postgres
   namespace: dev
 spec:
   clusterIP: None
   selector:
-    app: redis
+    app: postgres
   ports:
-  - port: 6379
-    targetPort: 6379
+  - port: 5432
+    targetPort: 5432
+

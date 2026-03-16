@@ -30,13 +30,7 @@ spec:
         - name: POSTGRES_DB
           value: "userdb"
         - name: POSTGRES_USER
-          valueFrom:
-            secretKeyRef:
-              name: postgres-secret
-              key: username
+          value: "shopflow"
         - name: POSTGRES_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: postgres-secret
-              key: password
+          value: "shopflow123"
 

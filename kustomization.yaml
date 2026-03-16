@@ -1,0 +1,36 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - dev-namespace.yaml
+
+  # Infra
+  - infra/kafka/kafka-deployment.yaml
+  - infra/kafka/kafka-service.yaml
+  - infra/redis/redis-service.yaml
+  - infra/redis/redis-statefulset.yaml
+  - infra/mongo/mongo-service.yaml
+  - infra/mongo/mongo-statefulset.yaml
+  - infra/rabbitmq/rabbitmq-deployment.yaml
+  - infra/rabbitmq/rabbitmq-service.yaml
+  - infra/postgres-user/postgres-user-service.yaml
+  - infra/postgres-user/postgres-user-statefulset.yaml
+  - infra/postgres-order/postgres-order-service.yaml
+  - infra/postgres-order/postgres-order-statefulset.yaml
+  - infra/postgres-payment/postgres-payment-service.yaml
+  - infra/postgres-payment/postgres-payment-statefulset.yaml
+
+  # Services
+  - api-gateway/api-gateway-deployment.yaml
+  - api-gateway/api-gateway-service.yaml
+  - user-service/user-service-deployment.yaml
+  - user-service/user-service-service.yaml
+  - product-service/product-service-deployment.yaml
+  - product-service/product-service-service.yaml
+  - order-service/order-service-deployment.yaml
+  - order-service/order-service-service.yaml
+  - payment-service/payment-service-deployment.yaml
+  - payment-service/payment-service-service.yaml
+  - notification-service/notification-service-deployment.yaml
+  - notification-service/notification-service-service.yaml
+

@@ -25,14 +25,4 @@ spec:
             memory: 128Mi
         ports:
         - containerPort: 4002
-        envFrom:
-        - configMapRef:
-            name: product-service-env
-        env:
-        - name: MONGODB_URI
-          valueFrom:
-            secretKeyRef:
-              name: product-service-mongo
-              key: MONGODB_URI
-        - name: REDIS_URL
-          value: redis://redis:6379
+        env: []
