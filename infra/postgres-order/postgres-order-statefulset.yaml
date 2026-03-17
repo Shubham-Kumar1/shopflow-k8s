@@ -9,6 +9,14 @@ spec:
   selector:
     matchLabels:
       app: postgres-order
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 1Gi
   template:
     metadata:
       labels:
@@ -19,6 +27,9 @@ spec:
         image: postgres:15
         ports:
         - containerPort: 5432
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/postgresql/data
         resources:
           requests:
             cpu: 50m
@@ -26,11 +37,5 @@ spec:
           limits:
             cpu: 200m
             memory: 512Mi
-        env:
-        - name: POSTGRES_DB
-          value: "orders_db"
-        - name: POSTGRES_USER
-          value: "shopflow"
-        - name: POSTGRES_PASSWORD
-          value: "shopflow123"
+        env: []
 
