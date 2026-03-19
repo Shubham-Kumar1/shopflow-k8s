@@ -38,8 +38,23 @@ spec:
           limits:
             cpu: 50m
             memory: 512Mi
-        envFrom:
-        - secretRef:
-            name: infra-mongo-secret
-            optional: true
+        env:
+        - name: MONGO_INITDB_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: infra-mongo-secret
+              key: database
+              optional: true
+        - name: MONGO_INITDB_ROOT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: infra-mongo-secret
+              key: rootUsername
+              optional: true
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: infra-mongo-secret
+              key: rootPassword
+              optional: true
 

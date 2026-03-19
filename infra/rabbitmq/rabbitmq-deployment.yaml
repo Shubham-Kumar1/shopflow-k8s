@@ -19,10 +19,19 @@ spec:
         ports:
         - containerPort: 5672
         - containerPort: 15672
-        envFrom:
-        - secretRef:
-            name: infra-rabbitmq-secret
-            optional: true
+        env:
+        - name: RABBITMQ_DEFAULT_USER
+          valueFrom:
+            secretKeyRef:
+              name: infra-rabbitmq-secret
+              key: username
+              optional: true
+        - name: RABBITMQ_DEFAULT_PASS
+          valueFrom:
+            secretKeyRef:
+              name: infra-rabbitmq-secret
+              key: password
+              optional: true
         resources:
           requests:
             cpu: 50m
