@@ -1,3 +1,4 @@
 *-secret.yaml
 *-env.yaml
 secrets/secret.json
+vault-secrets

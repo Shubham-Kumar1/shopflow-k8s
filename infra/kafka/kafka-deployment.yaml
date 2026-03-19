@@ -18,7 +18,10 @@ spec:
         image: bitnamilegacy/kafka:3.7
         ports:
         - containerPort: 9092
-        env: []
+        envFrom:
+        - secretRef:
+            name: infra-kafka-secret
+            optional: true
         resources:
           requests:
             cpu: 100m

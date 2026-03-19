@@ -25,4 +25,8 @@ spec:
             memory: 256Mi
         ports:
         - containerPort: 4004
+        envFrom:
+        - secretRef:
+            name: payment-service-secret
+            optional: true
 

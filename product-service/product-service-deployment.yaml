@@ -25,4 +25,7 @@ spec:
             memory: 128Mi
         ports:
         - containerPort: 4002
-        env: []
+        envFrom:
+        - secretRef:
+            name: product-service-secret
+            optional: true

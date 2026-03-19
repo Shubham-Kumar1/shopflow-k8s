@@ -25,4 +25,8 @@ spec:
             memory: 256Mi
         ports:
         - containerPort: 4000
+        envFrom:
+        - secretRef:
+            name: api-gateway-secret
+            optional: true
 

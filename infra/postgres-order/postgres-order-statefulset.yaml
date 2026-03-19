@@ -37,5 +37,8 @@ spec:
           limits:
             cpu: 200m
             memory: 512Mi
-        env: []
+        envFrom:
+        - secretRef:
+            name: infra-postgres-secret
+            optional: true
 

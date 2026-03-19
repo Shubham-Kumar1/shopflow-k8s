@@ -25,4 +25,8 @@ spec:
             memory: 256Mi
         ports:
         - containerPort: 4003
+        envFrom:
+        - secretRef:
+            name: order-service-secret
+            optional: true
 
